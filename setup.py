@@ -4,7 +4,7 @@ from setuptools import setup
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-packages = ['pyfastspring']
+# packages = ['pyfastspring']
 
 requires = [
     'requests>=2.17.1,<3',
@@ -22,7 +22,7 @@ setup(
     project_urls={
         "Bug Tracker": "https://github.com/stephendwolff/fastspring/issues",
     },
-    packages=packages,
+    # packages=packages,
     package_data={'': ['LICENSE', 'NOTICE']},
     package_dir={'pyfastspring': 'pyfastspring'},
     include_package_data=True,
