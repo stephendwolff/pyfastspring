@@ -26,7 +26,7 @@ class FastSpringAPI(object):
         [FastSpring >>> If you specify multiple order IDs in the request,
         the response will return an array with each order object.]
         """
-        return self._request('GET', f'orders/{reference}')
+        return self._request('GET', f'orders/{order_id}')
 
     def get_orders_by_date_range(self, begin_date, end_date, limit=50, page=1):
         """
