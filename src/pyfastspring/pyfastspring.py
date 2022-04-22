@@ -42,6 +42,20 @@ class FastSpringAPI(object):
         url_path = f"orders?begin={begin_date_str}&end={end_date_str}&limit={limit}&page={page}"
         return self._request('GET', url_path)
 
+    def get_subscription_by_id(self, subscription_id):
+        """
+        Apply a subscription ID to return the associated subscription.
+        """
+        return self._request('GET', f'subscriptions/{subscription_id}')
+
+    def get_subscription_ids(self, limit=50, page=1):
+        """
+        Return all subscription ids (paginated)
+        """
+
+        url_path = f"subscriptions?limit={limit}&page={page}"
+        return self._request('GET', url_path)
+
     def _request(self, method, path, data=None, skip_unparse=False):
         """
         Internal method for making requests to the FastSpring server.
@@ -51,19 +65,18 @@ class FastSpringAPI(object):
 
         request_path = f'https://{self.api_domain}/{path}'
 
-        if self.debug:
-            print('-' * 80)
-            print('{}'.format(resp.status_code))
-            print('{}    {}{}'.format(method, self.api_domain, request_path))
-            print(body)
-            print('-' * 80)
-
         headers = {"Content-type": "application/json"}
         resp = requests.request(
             method,
             request_path,
             auth=(self.username, self.password),
         )
+        if self.debug:
+            print('-' * 80)
+            print('{}'.format(resp.status_code))
+            print('{}    {}{}'.format(method, self.api_domain, request_path))
+            print(body)
+            print('-' * 80)
         resp.raise_for_status()
 
         return resp.json()
