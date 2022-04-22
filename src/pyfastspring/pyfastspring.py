@@ -19,6 +19,19 @@ class FastSpringAPI(object):
         self.password = password
         self.api_domain = api_domain
 
+    def get_account_by_id(self, order_id):
+        """
+        Apply an account ID to return the associated account.
+        """
+        return self._request('GET', f'accounts/{order_id}')
+
+    def get_account_ids(self, limit=50, page=1):
+        """
+        Return all account ids (paginated)
+        """
+        url_path = f"accounts?limit={limit}&page={page}"
+        return self._request('GET', url_path)
+
     def get_order_by_id(self, order_id):
         """
         Apply an order ID to return the associated order.
