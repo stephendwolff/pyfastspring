@@ -32,6 +32,11 @@ class FastSpringAPI(object):
         url_path = f"accounts?limit={limit}&page={page}"
         return self._request('GET', url_path)
 
+    def search_accounts_by_parameter(self, parameter, search_value):
+
+        url_path = f"accounts?{parameter}={search_value}"
+        return self._request('GET', url_path)
+
     def get_order_by_id(self, order_id):
         """
         Apply an order ID to return the associated order.
