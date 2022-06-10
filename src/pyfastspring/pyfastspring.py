@@ -66,6 +66,12 @@ class FastSpringAPI(object):
         """
         return self._request('GET', f'subscriptions/{subscription_id}')
 
+    def get_subscription_entries(self, subscription_id):
+        """
+        Get all 'order' entries for a subscription, these include 'rebills' which end in a 'b'
+        """
+        return self._request('GET', f'subscriptions/{subscription_id}/entries')
+
     def get_subscription_ids(self, limit=50, page=1):
         """
         Return all subscription ids (paginated)
