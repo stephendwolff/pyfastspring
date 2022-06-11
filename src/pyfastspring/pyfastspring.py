@@ -80,6 +80,13 @@ class FastSpringAPI(object):
         url_path = f"subscriptions?limit={limit}&page={page}"
         return self._request('GET', url_path)
 
+    def cancel_subscription(self, subscription_id):
+        """
+        Cancel a subscription [ stop any further payments ]
+        """
+        url_path = f"subscriptions/{subscription_id}"
+        return self._request('DELETE', url_path)
+
     def _request(self, method, path, data=None, skip_unparse=False):
         """
         Internal method for making requests to the FastSpring server.
