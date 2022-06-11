@@ -99,7 +99,7 @@ class FastSpringAPI(object):
             print('-' * 80)
             print('{}'.format(resp.status_code))
             print('{}    {}{}'.format(method, self.api_domain, request_path))
-            print(body)
+            print(resp.text)
             print('-' * 80)
         resp.raise_for_status()
 
